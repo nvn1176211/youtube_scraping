@@ -34,16 +34,16 @@
                     @endforeach
                 </select>
             </div>
-            <div class="mb-10px">
+            <div class="main-search-item">
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </div>
     </form>
 
-    @if($group1)
+    @if(!empty($group1))
     @foreach($group1 as $v)
         <div class="mt-20px" style="display: flex;">
-            <div style="width: 20%;background-color:red;margin-right: 10px">
+            <div style="width: 20%;margin-right: 10px">
                 <img src="{{$v['thumb_images'] && $v['thumb_images'][0] ? $v['thumb_images'][0] : ''}}" width="100%">
             </div>
             <div style="width: 80%">
@@ -65,17 +65,24 @@
                 <div>
                     <span class="blue-text">Published time: </span><span>{{$v['published_time'] ?? ''}}</span>
                 </div>
-                <div>
-                    <span class="blue-text">Channel url: </span><a href="{{$v['channel_url'] ?? ''}}" target="_blank">{{$v['channel_url'] ?? ''}}</a>
+                <div style="display: flex;">
+                    <span class="blue-text" style="flex-shrink: 0">Channel url: </span>
+                    <div style="flex-grow: 2">
+                        <div>
+                            <input style="width:100%" type="text" value="{{$v['channel_url'] ?? ''}}">
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <span class="blue-text">Video url: </span><a href="{{$v['video_url'] ?? ''}}" target="_blank">{{$v['video_url'] ?? ''}}</a>
                 </div>
                 <div style="display: flex;">
                     <span class="blue-text" style="flex-shrink: 0">Thumbnail urls:&nbsp;</span>
-                    <div>
+                    <div style="flex-grow: 2">
                         @foreach($v['thumb_images'] as $v)
-                            <a href="{{$v}}" target="_blank">{{$v}}</a>
+                            <div>
+                                <input style="width:100%" type="text" value="{{$v}}">
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -84,7 +91,7 @@
     @endforeach
     @endif
 
-    @if($group2)
+    @if(!empty($group2))
     <h3 class="mt-30px mb-10px">{{$recentlyTrendingText}}</h3>
     @foreach($group2 as $v)
         <div class="mt-20px" style="display: flex;">
@@ -114,6 +121,16 @@
                 </div>
                 <div>
                     <span class="blue-text">Video url: </span><a href="{{$v['video_url'] ?? ''}}">{{$v['video_url'] ?? ''}}</a>
+                </div>
+                <div style="display: flex;">
+                    <span class="blue-text" style="flex-shrink: 0">Thumbnail urls:&nbsp;</span>
+                    <div style="flex-grow: 2">
+                        @foreach($v['thumb_images'] as $v)
+                            <div>
+                                <input style="width:100%" type="text" value="{{$v}}">
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
