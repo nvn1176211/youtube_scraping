@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Controller@index');
 Route::post('/search', 'Controller@search');
 
+// https://regexr.com/
+// https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php
+// https://blog-en.openalfa.com/multiline-searches-with-preg_match-in-php
+// https://www.harecoded.com/true-multiline-regexp-in-php-the-i-miss-u-technique-2286008/
 
 
 

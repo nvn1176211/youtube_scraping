@@ -7,12 +7,25 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Constants;
+use Cache;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function getLocations(){
+        // dd(Cache::get('test'));
+        // Cache::put('test', str_replace('\n\s\s', '', Cache::get('trending_response')));
+        // echo (Cache::get('test'));die;
+        // dd(Cache::get('trending_response'));
+        // preg_match_all("|<img data-ytimg=(.*)\" >\n<span|U",
+        // preg_match_all("|<img data-ytimg(.*)height=|U",
+        preg_match_all("|<li class=\"expanded-shelf-content-item-wrapper\">(.*)lượt xem|misU",
+        // preg_match_all("|\sdir=\"ltr\">(.*)</a><span|U",
+        Cache::get('trending_response'),
+        $out1, PREG_PATTERN_ORDER);
+        dd($out1);
+        
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/picker_ajax?action_country_json=1");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -26,6 +39,10 @@ class Controller extends BaseController
                     array_push($locations, [$v[1], $v[2]]);
                 }
             }
+        }
+        if(empty($locations)){
+            Cache::put('raw_location', $rawLocation);
+            echo 'load location fail';die;
         }
         return $locations;
     }
@@ -67,11 +84,6 @@ class Controller extends BaseController
             $out1,
             PREG_PATTERN_ORDER
         );
-
-        if(!count($out1)){
-            echo $res;die;
-        }
-        
         preg_match_all(
             "|{\"videoRenderer\":{\"videoId\":(.*),{\"thumbnailOverlayNowPlayingRenderer\":|U",
             $recent_trending,
@@ -237,6 +249,11 @@ class Controller extends BaseController
                 'channel_url' => !empty($channel_url[2]) && !empty($channel_url[2][0]) ? 'https://www.youtube.com/' . (!empty($channel_url[1][0]) ? $channel_url[1][0] : '') . $channel_url[2][0] : '',
                 'video_url' => !empty($video_url[1]) && !empty($video_url[1][0]) ? 'https://www.youtube.com/watch' . $video_url[1][0] : ''
             ]);
+        }
+
+        if(!count($group1)){
+            Cache::put('trending_response', $res);
+            echo 'trending response error';die;
         }
 
         $searchData = [

@@ -1,6 +1,9 @@
 *{
     box-sizing: border-box;
 }
+body{
+    margin: 0;
+}
 .main-search-form{
     display: flex;
 }
@@ -58,7 +61,33 @@
     margin-bottom: 10px;
 }
 
+/* padding */
+.p-10px{
+    padding: 10px;
+}
+
 /* color */
 .blue-text{
     color: blue;
+}
+
+/* objects */
+.card{
+    display: flex;
+    margin-bottom:10px;
+}
+
+.card-input{
+    width:95%;
+    float: left;
+    font-size: 17px;
+    border: 1px solid grey;
+}
+
+.card-button{
+    width:4%;
+    float: left;
+    border: 1px solid grey;
+    border-left:none;
+    font-size: 17px;
 }
