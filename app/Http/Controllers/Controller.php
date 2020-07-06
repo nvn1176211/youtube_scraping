@@ -20,11 +20,11 @@ class Controller extends BaseController
         // dd(Cache::get('trending_response'));
         // preg_match_all("|<img data-ytimg=(.*)\" >\n<span|U",
         // preg_match_all("|<img data-ytimg(.*)height=|U",
-        preg_match_all("|<li class=\"expanded-shelf-content-item-wrapper\">(.*)lượt xem|misU",
         // preg_match_all("|\sdir=\"ltr\">(.*)</a><span|U",
-        Cache::get('trending_response'),
-        $out1, PREG_PATTERN_ORDER);
-        dd($out1);
+        // preg_match_all("|<li class=\"expanded-shelf-content-item-wrapper\">(.*)lượt xem|misU",
+        // Cache::get('trending_response'),
+        // $out1, PREG_PATTERN_ORDER);
+        // dd($out1);
         
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/picker_ajax?action_country_json=1");

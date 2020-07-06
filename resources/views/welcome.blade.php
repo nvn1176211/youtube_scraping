@@ -44,13 +44,13 @@
 
     @if(!empty($group1))
     @foreach($group1 as $v)
-        <div class="mt-20px" style="display: flex;">
+        <div class="card" style="display: flex;">
             <div style="width: 20%;margin-right: 10px">
                 <img src="{{$v['thumb_images'] && $v['thumb_images'][0] ? $v['thumb_images'][0] : ''}}" width="100%">
             </div>
             <div style="width: 80%">
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Title: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Title: </span>
                     <div style="flex-grow: 2;">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['title'] ?? ''}}">
@@ -58,8 +58,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Owner: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Owner: </span>
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['owner'] ?? ''}}">
@@ -67,8 +67,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Length: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Length: </span>
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['length'] ?? ''}}">
@@ -76,8 +76,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">View count: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">View count: </span>
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['view_count'] ?? ''}}">
@@ -85,8 +85,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Description: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Description: </span>
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['description'] ?? ''}}">
@@ -94,8 +94,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Published time: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Published time: </span>
                     <div style="flex-grow: 2;">
                         <div style="width:100%">
                             <input class="card-input" type="text" value="{{$v['published_time'] ?? ''}}">
@@ -103,8 +103,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Channel url: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Channel url: </span>
                     <div style="flex-grow: 2;">
                         <div style="width:100%">
                             <input class="card-input" type="text" value="{{$v['channel_url'] ?? ''}}">
@@ -112,8 +112,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Video url: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Video url: </span>
                     <div style="flex-grow: 2;">
                         <div style="width:100%">
                             <input class="card-input" type="text" value="{{$v['video_url'] ?? ''}}">
@@ -121,8 +121,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Thumbnail urls:&nbsp;</span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Thumbnail urls:&nbsp;</span>
                     <div style="flex-grow: 2;">
                         @foreach($v['thumb_images'] as $v)
                             <div>
@@ -140,13 +140,13 @@
     @if(!empty($group2))
     <h3 class="mt-30px mb-10px">{{$recentlyTrendingText}}</h3>
     @foreach($group2 as $v)
-    <div class="mt-20px" style="display: flex;">
+    <div class="card" style="display: flex;">
             <div style="width: 20%;margin-right: 10px">
                 <img src="{{$v['thumb_images'] && $v['thumb_images'][0] ? $v['thumb_images'][0] : ''}}" width="100%">
             </div>
             <div style="width: 80%">
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Title: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Title: </span>
                     <div style="flex-grow: 2;">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['title'] ?? ''}}">
@@ -154,8 +154,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Owner: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Owner: </span>
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['owner'] ?? ''}}">
@@ -163,8 +163,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Length: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Length: </span>
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['length'] ?? ''}}">
@@ -172,8 +172,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">View count: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">View count: </span>
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['view_count'] ?? ''}}">
@@ -181,8 +181,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Description: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Description: </span>
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['description'] ?? ''}}">
@@ -190,8 +190,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Published time: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Published time: </span>
                     <div style="flex-grow: 2;">
                         <div style="width:100%">
                             <input class="card-input" type="text" value="{{$v['published_time'] ?? ''}}">
@@ -199,8 +199,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Channel url: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Channel url: </span>
                     <div style="flex-grow: 2;">
                         <div style="width:100%">
                             <input class="card-input" type="text" value="{{$v['channel_url'] ?? ''}}">
@@ -208,8 +208,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Video url: </span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Video url: </span>
                     <div style="flex-grow: 2;">
                         <div style="width:100%">
                             <input class="card-input" type="text" value="{{$v['video_url'] ?? ''}}">
@@ -217,8 +217,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <span class="blue-text" style="flex-shrink: 0">Thumbnail urls:&nbsp;</span>
+                <div class="card-item">
+                    <span class="card-title" style="flex-shrink: 0">Thumbnail urls:&nbsp;</span>
                     <div style="flex-grow: 2;">
                         @foreach($v['thumb_images'] as $v)
                             <div>

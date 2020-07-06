@@ -73,14 +73,23 @@ body{
 
 /* objects */
 .card{
+    margin: 20px 10px 0 10px;
+}
+
+.card-item{
     display: flex;
     margin-bottom:10px;
+}
+
+.card-title{
+    color: blue;
+    font-size: 0.85rem;
 }
 
 .card-input{
     width:95%;
     float: left;
-    font-size: 17px;
+    font-size: 0.75rem;
     border: 1px solid grey;
 }
 
@@ -89,5 +98,5 @@ body{
     float: left;
     border: 1px solid grey;
     border-left:none;
-    font-size: 17px;
+    font-size: 0.75rem;
 }
