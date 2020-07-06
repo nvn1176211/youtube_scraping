@@ -41,7 +41,7 @@
             </div>
         </form>
     </div>
-
+    <div>{{$style ?? ''}}</div>
     @if(!empty($group1))
     @foreach($group1 as $v)
         <div class="card" style="display: flex;">
@@ -124,12 +124,10 @@
                 <div class="card-item">
                     <span class="card-title" style="flex-shrink: 0">Thumbnail urls:&nbsp;</span>
                     <div style="flex-grow: 2;">
-                        @foreach($v['thumb_images'] as $v)
-                            <div>
-                                <input class="card-input" type="text" value="{{$v}}">
-                                <button class="card-button" type="button">copy</button>
-                            </div>
-                        @endforeach
+                        <div>
+                            <input class="card-input" type="text" value="{{$v['thumb_images'] && $v['thumb_images'][0] ? $v['thumb_images'][0] : ''}}">
+                            <button class="card-button" type="button">copy</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -220,18 +218,18 @@
                 <div class="card-item">
                     <span class="card-title" style="flex-shrink: 0">Thumbnail urls:&nbsp;</span>
                     <div style="flex-grow: 2;">
-                        @foreach($v['thumb_images'] as $v)
-                            <div>
-                                <input class="card-input" type="text" value="{{$v}}">
-                                <button class="card-button" type="button">copy</button>
-                            </div>
-                        @endforeach
+                        <div>
+                            <input class="card-input" type="text" value="{{$v['thumb_images'] && $v['thumb_images'][0] ? $v['thumb_images'][0] : ''}}">
+                            <button class="card-button" type="button">copy</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     @endforeach
     @endif
+
+    <?php dd($group1, $group2) ?>
 
 </body>
 
