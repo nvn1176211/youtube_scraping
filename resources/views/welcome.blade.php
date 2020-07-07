@@ -229,8 +229,6 @@
     @endforeach
     @endif
 
-    <?php dd($group1, $group2) ?>
-
 </body>
 
 </html>
