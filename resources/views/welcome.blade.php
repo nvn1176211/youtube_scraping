@@ -3,11 +3,12 @@
 
 <head>
     <link rel="stylesheet" href="index.css?{{time()}}">
+    <base href="{{ asset('') }}">
 </head>
 
 <body>
     <div class="p-10px">
-        <h2>Youtube Data Scraping</h2>
+        <a class="brand" href="">Youtube Data Scraping</a>
         <form action="search" method="post">
             @csrf
             <div class="main-search-form">
@@ -15,7 +16,7 @@
                     <select name="location" style="width: 300px;" class="input-control">
                         <option value="" selected disabled>Choose Location</option>
                         @foreach($locations as $v)
-                            <option value="{{$v[0] ?? ''}}">{{$v[1] ?? ''}}</option>
+                            <option value="{{$v[0] ?? ''}}" {{($v[0] ?? '') == (isset($olds) && isset($olds['location']) ? $olds['location'] : '') ? 'selected' : ''}}>{{$v[1] ?? ''}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -23,15 +24,15 @@
                     <select name="search_type" class="input-control" style="width: 200px;">
                         <option value="" selected disabled>Choose Search Type</option>
                         @foreach(Constants::SEARCH_TYPE as $i => $v)
-                            <option value="{{$i}}">{{$v}}</option>
+                            <option value="{{$i}}" {{($v[0] ?? '') == (isset($olds) && isset($olds['search_type']) ? $olds['search_type'] : '') ? 'selected' : ''}}>{{$v}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="main-search-item">
-                    <select name="" class="input-control" style="width: 200px;">
+                    <select name="language" class="input-control" style="width: 200px;">
                         <option value="" selected disabled>Choose Language</option>
                         @foreach(Constants::LANGUAGES as $i => $v)
-                            <option value="{{$i}}">{{$v}}</option>
+                            <option value="{{$i}}" {{($v[0] ?? '') == (isset($olds) && isset($olds['language']) ? $olds['language'] : '') ? 'selected' : ''}}>{{$v}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -41,7 +42,7 @@
             </div>
         </form>
     </div>
-    <div>{{$style ?? ''}}</div>
+    <h3 class="ml-10px">Result{{isset($style) && $style == 1 ? '' : ':'}}</h3>
     @if(!empty($group1))
     @foreach($group1 as $v)
         <div class="card" style="display: flex;">
@@ -54,7 +55,7 @@
                     <div style="flex-grow: 2;">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['title'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -63,7 +64,7 @@
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['owner'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -72,7 +73,7 @@
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['length'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -81,7 +82,7 @@
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['view_count'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -90,7 +91,7 @@
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['description'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -99,7 +100,7 @@
                     <div style="flex-grow: 2;">
                         <div style="width:100%">
                             <input class="card-input" type="text" value="{{$v['published_time'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -108,7 +109,7 @@
                     <div style="flex-grow: 2;">
                         <div style="width:100%">
                             <input class="card-input" type="text" value="{{$v['channel_url'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -117,7 +118,7 @@
                     <div style="flex-grow: 2;">
                         <div style="width:100%">
                             <input class="card-input" type="text" value="{{$v['video_url'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -126,7 +127,7 @@
                     <div style="flex-grow: 2;">
                         <div>
                             <input class="card-input" type="text" value="{{$v['thumb_images'] && $v['thumb_images'][0] ? $v['thumb_images'][0] : ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -136,7 +137,7 @@
     @endif
 
     @if(!empty($group2))
-    <h3 class="mt-30px mb-10px">{{$recentlyTrendingText}}</h3>
+    <h3 class="mt-30px mb-10px ml-10px">{{$recentlyTrendingText}}</h3>
     @foreach($group2 as $v)
     <div class="card" style="display: flex;">
             <div style="width: 20%;margin-right: 10px">
@@ -148,7 +149,7 @@
                     <div style="flex-grow: 2;">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['title'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -157,7 +158,7 @@
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['owner'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -166,7 +167,7 @@
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['length'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -175,7 +176,7 @@
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['view_count'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -184,7 +185,7 @@
                     <div style="flex-grow: 2">
                         <div style="width:100%;">
                             <input class="card-input" type="text" value="{{$v['description'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -193,7 +194,7 @@
                     <div style="flex-grow: 2;">
                         <div style="width:100%">
                             <input class="card-input" type="text" value="{{$v['published_time'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -202,7 +203,7 @@
                     <div style="flex-grow: 2;">
                         <div style="width:100%">
                             <input class="card-input" type="text" value="{{$v['channel_url'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -211,7 +212,7 @@
                     <div style="flex-grow: 2;">
                         <div style="width:100%">
                             <input class="card-input" type="text" value="{{$v['video_url'] ?? ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -220,7 +221,7 @@
                     <div style="flex-grow: 2;">
                         <div>
                             <input class="card-input" type="text" value="{{$v['thumb_images'] && $v['thumb_images'][0] ? $v['thumb_images'][0] : ''}}">
-                            <button class="card-button" type="button">copy</button>
+                            <button class="card-button" type="button" onclick="copyToClipboard(event)">copy</button>
                         </div>
                     </div>
                 </div>
@@ -230,5 +231,7 @@
     @endif
 
 </body>
+
+    <script src="index.js?{{time()}}"></script>
 
 </html>

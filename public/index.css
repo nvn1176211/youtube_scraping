@@ -60,6 +60,9 @@ body{
 .mb-10px{
     margin-bottom: 10px;
 }
+.ml-10px{
+    margin-left: 10px;
+}
 
 /* padding */
 .p-10px{
@@ -99,4 +102,16 @@ body{
     border: 1px solid grey;
     border-left:none;
     font-size: 0.75rem;
+}
+
+.brand{
+    padding: 5px;
+    background-color: red;
+    color: white;
+    display: inline-block;
+    border-radius: 5%;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
