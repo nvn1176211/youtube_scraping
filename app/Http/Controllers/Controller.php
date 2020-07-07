@@ -14,94 +14,6 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function getLocations(){
-        // dd(Cache::get('raw_location'));
-        // echo Cache::get('raw_location');die;
-        // preg_match_all("|<li class=\"expanded-shelf-content-item-wrapper\">([\s\S]*)</div></li>|U",
-        // Cache::get('trending_response_2'),
-        // $out1, PREG_PATTERN_ORDER);
-        // $group1 = [];
-        // foreach ($out1[1] as $i) {
-        //     preg_match_all(
-        //         "|https://i.ytimg.com(.*)\"|U",
-        //         $i,
-        //         $image,
-        //         PREG_PATTERN_ORDER
-        //     );
-
-        //     preg_match_all(
-        //         "|dir=\"ltr\">(.*)</a><span class=\"accessible-description\"|U",
-        //         $i,
-        //         $title,
-        //         PREG_PATTERN_ORDER
-        //     );
-
-        //     //div
-        //     preg_match_all(
-        //         "|yt-ui-ellipsis-2\"\sdir=\"ltr\">(.*)</div>|U",
-        //         $i,
-        //         $description,
-        //         PREG_PATTERN_ORDER
-        //     );
-
-        //     preg_match_all(
-        //         "|data-sessionlink=\"[^\"]+\"\s>(.*)</a>|U",
-        //         $i,
-        //         $owner,
-        //         PREG_PATTERN_ORDER
-        //     );
-
-        //     //ngày trước
-        //     preg_match_all(
-        //         "|<ul\sclass=\"yt-lockup-meta-info\"><li>(.*)</li><li>|U",
-        //         $i,
-        //         $published_time,
-        //         PREG_PATTERN_ORDER
-        //     );
-
-        //     preg_match_all(
-        //         "|<span\sclass=\"video-time\"\saria-hidden=\"true\">(.*)</span>|U",
-        //         $i,
-        //         $length,
-        //         PREG_PATTERN_ORDER
-        //     );
-
-        //     //lượt xem
-        //     preg_match_all(
-        //         "|<ul\sclass=\"yt-lockup-meta-info\"><li>[^<]+</li><li>(.*)</li></ul>|U",
-        //         $i,
-        //         $view_count,
-        //         PREG_PATTERN_ORDER
-        //     );
-        //     // href=\"/(channel|user)/
-        //     preg_match_all(
-        //         "|<div class=\"yt-lockup-byline \"><a href=\"(.*)\" class=\"yt-uix-sessionlink|U",
-        //         $i,
-        //         $channel_url,
-        //         PREG_PATTERN_ORDER
-        //     );
-        //     preg_match_all(
-        //         "|href=\"/watch(.*)\"\sclass=\"yt-uix-tile-link|U",
-        //         $i,
-        //         $video_url,
-        //         PREG_PATTERN_ORDER
-        //     );
-        //     foreach ($image[1] as $index => $y) {
-        //         $image[1][$index] = 'https://i.ytimg.com' . $image[1][$index];
-        //     }
-        //     array_push($group1, [
-        //         'title' => !empty($title[1]) && !empty($title[1][0]) ? $title[1][0] : '',
-        //         'description' => !empty($description[1]) && !empty($description[1][0]) ? $description[1][0] : '',
-        //         'thumb_images' => $image[1],
-        //         'owner' => !empty($owner[1]) && !empty($owner[1][0]) ? $owner[1][0] : '',
-        //         'published_time' => !empty($published_time[1]) && !empty($published_time[1][0]) ? $published_time[1][0] : '',
-        //         'length' => !empty($length[1]) && !empty($length[1][0]) ? $length[1][0] : '',
-        //         'view_count' => !empty($view_count[1]) && !empty($view_count[1][0]) ? $view_count[1][0] : '',
-        //         'channel_url' => !empty($channel_url[1]) && !empty($channel_url[1][0]) ? 'https://www.youtube.com' . $channel_url[1][0] : '',
-        //         'video_url' => !empty($video_url[1]) && !empty($video_url[1][0]) ? 'https://www.youtube.com/watch' . $video_url[1][0] : ''
-        //     ]);
-        // }
-        // dd($group1, $out1);
-        
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://www.youtube.com/picker_ajax?action_country_json=1");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -564,4 +476,92 @@ class Controller extends BaseController
         ];
         return $old;
     }
+
+   // dd(Cache::get('raw_location'));
+        // echo Cache::get('raw_location');die;
+        // preg_match_all("|<li class=\"expanded-shelf-content-item-wrapper\">([\s\S]*)</div></li>|U",
+        // Cache::get('trending_response_2'),
+        // $out1, PREG_PATTERN_ORDER);
+        // $group1 = [];
+        // foreach ($out1[1] as $i) {
+        //     preg_match_all(
+        //         "|https://i.ytimg.com(.*)\"|U",
+        //         $i,
+        //         $image,
+        //         PREG_PATTERN_ORDER
+        //     );
+
+        //     preg_match_all(
+        //         "|dir=\"ltr\">(.*)</a><span class=\"accessible-description\"|U",
+        //         $i,
+        //         $title,
+        //         PREG_PATTERN_ORDER
+        //     );
+
+        //     //div
+        //     preg_match_all(
+        //         "|yt-ui-ellipsis-2\"\sdir=\"ltr\">(.*)</div>|U",
+        //         $i,
+        //         $description,
+        //         PREG_PATTERN_ORDER
+        //     );
+
+        //     preg_match_all(
+        //         "|data-sessionlink=\"[^\"]+\"\s>(.*)</a>|U",
+        //         $i,
+        //         $owner,
+        //         PREG_PATTERN_ORDER
+        //     );
+
+        //     //ngày trước
+        //     preg_match_all(
+        //         "|<ul\sclass=\"yt-lockup-meta-info\"><li>(.*)</li><li>|U",
+        //         $i,
+        //         $published_time,
+        //         PREG_PATTERN_ORDER
+        //     );
+
+        //     preg_match_all(
+        //         "|<span\sclass=\"video-time\"\saria-hidden=\"true\">(.*)</span>|U",
+        //         $i,
+        //         $length,
+        //         PREG_PATTERN_ORDER
+        //     );
+
+        //     //lượt xem
+        //     preg_match_all(
+        //         "|<ul\sclass=\"yt-lockup-meta-info\"><li>[^<]+</li><li>(.*)</li></ul>|U",
+        //         $i,
+        //         $view_count,
+        //         PREG_PATTERN_ORDER
+        //     );
+        //     // href=\"/(channel|user)/
+        //     preg_match_all(
+        //         "|<div class=\"yt-lockup-byline \"><a href=\"(.*)\" class=\"yt-uix-sessionlink|U",
+        //         $i,
+        //         $channel_url,
+        //         PREG_PATTERN_ORDER
+        //     );
+        //     preg_match_all(
+        //         "|href=\"/watch(.*)\"\sclass=\"yt-uix-tile-link|U",
+        //         $i,
+        //         $video_url,
+        //         PREG_PATTERN_ORDER
+        //     );
+        //     foreach ($image[1] as $index => $y) {
+        //         $image[1][$index] = 'https://i.ytimg.com' . $image[1][$index];
+        //     }
+        //     array_push($group1, [
+        //         'title' => !empty($title[1]) && !empty($title[1][0]) ? $title[1][0] : '',
+        //         'description' => !empty($description[1]) && !empty($description[1][0]) ? $description[1][0] : '',
+        //         'thumb_images' => $image[1],
+        //         'owner' => !empty($owner[1]) && !empty($owner[1][0]) ? $owner[1][0] : '',
+        //         'published_time' => !empty($published_time[1]) && !empty($published_time[1][0]) ? $published_time[1][0] : '',
+        //         'length' => !empty($length[1]) && !empty($length[1][0]) ? $length[1][0] : '',
+        //         'view_count' => !empty($view_count[1]) && !empty($view_count[1][0]) ? $view_count[1][0] : '',
+        //         'channel_url' => !empty($channel_url[1]) && !empty($channel_url[1][0]) ? 'https://www.youtube.com' . $channel_url[1][0] : '',
+        //         'video_url' => !empty($video_url[1]) && !empty($video_url[1][0]) ? 'https://www.youtube.com/watch' . $video_url[1][0] : ''
+        //     ]);
+        // }
+        // dd($group1, $out1);    
 }

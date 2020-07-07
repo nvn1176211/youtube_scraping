@@ -42,7 +42,7 @@
             </div>
         </form>
     </div>
-    <h3 class="ml-10px">Result{{isset($style) && $style == 1 ? '' : ':'}}</h3>
+    <h3 class="ml-10px">{{isset($style) ? 'Result' : ''}}{{isset($style) && $style == 1 ? ':' : ''}}</h3>
     @if(!empty($group1))
     @foreach($group1 as $v)
         <div class="card" style="display: flex;">
